@@ -1,4 +1,4 @@
-# Hackaton-Common-Voice
+# Nombre de nuestra app
 
 ## Los panchos
 - Fernando Santa Rita Vizuet ([@FSRV24](https://github.com/FSRV24) )
