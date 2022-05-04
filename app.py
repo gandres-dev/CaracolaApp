@@ -46,7 +46,7 @@ description = "<h1>Hola</h1> Aplicación que ayuda a programar a traves de tu vo
 # ,'mientras variable alpha es menor igual a numero dos'
 # ,'Definir variable con nombre india igual a numero uno'
 examples = [
-            'definir función con nombre magica y parámetros x y z'
+            'definir función con nombre magica y parámetros x y z',
             'mientras variable india es menor o igual a  seis',
             'ejecuta print con argumentos variable india producto cadena o cadena','Asignar variable india con india mas uno',
             './grabaciones-wav/codigo_o/Audios demo while/definir_func_avitua.wav',
