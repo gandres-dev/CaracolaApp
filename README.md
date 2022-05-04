@@ -86,3 +86,6 @@ Para el uso de variables que incluyan una letra se encuentran problemas con el m
 - yarda -> y
                     
 - llarda -> y  
+
+---
+App despliegue: https://huggingface.co/spaces/dev-andres/Caracola-app 
