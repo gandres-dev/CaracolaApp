@@ -78,10 +78,11 @@ def crear_funcion(instruccion):
             indentacion += 1
 
         # concatenación del nombre y parámetros de la función
-        output = f'<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0066bb; font-weight: bold">{name_func}</span>({parametros}):<br>' + '&emsp;' * indentacion + '|'
+        output = f'def {name_func}({parametros}):\n' + '\t' * indentacion + '|'
     return output
 
-import re
+
+
 def encontrar_palabras(transcript,cjto_palabras):
 
     """
@@ -114,6 +115,8 @@ def encontrar_palabras(transcript,cjto_palabras):
     despues_palabra=transcript[final:].strip()
     palabra=transcript[inicio:final]
     return antes_palabra,palabra,despues_palabra
+
+
 
 def crear_condicional(transcript):
     ''' 
@@ -174,8 +177,8 @@ def crear_condicional(transcript):
         valor=str(dict_numeros[valor])
 
     indentacion+=1
-    #t = f'<span style="text-indent:{20 * indentacion}px";> <span>'
-    return f'<span style="color: #008000; font-weight: bold">{keyword_mapeo[keyword]} </span> {nombre_var} {condicional_mapeo[palabra_condicional]} {valor}:'+'<br>' +'&emsp;'* indentacion+'|'
+
+    return f'{keyword_mapeo[keyword]} {nombre_var} {condicional_mapeo[palabra_condicional]} {valor}:'+'\n' +'\t'* indentacion+'|'
 
 
 
@@ -203,13 +206,15 @@ def crear_cadena(transcript):
     >> ['ejecuta print con argumentos variable India producto','"guion"','']
     """
     try:
-        inicio,final=list(re.finditer(r"cadena (.+) cadena",transcript))[0].span()
+        inicio,final = list(re.finditer(r"cadena (.+) cadena",transcript))[0].span()
     except:
         return ''
-    antes_palabra=transcript[:inicio].strip()
-    despues_palabra=transcript[final:].strip()
-    palabra=list(re.finditer(r"cadena (.+) cadena",transcript))[0].group(1)
-    return antes_palabra,f'"{palabra}"',despues_palabra
+    antes_palabra = transcript[:inicio].strip()
+    despues_palabra = transcript[final:].strip()
+    palabra = list(re.finditer(r"cadena (.+) cadena", transcript))[0].group(1)
+    return antes_palabra, f'"{palabra}"', despues_palabra
+
+
 
 def crear_var_existente(transcript):
     """
@@ -244,13 +249,9 @@ def crear_var_existente(transcript):
     return nombre_var
 
 
-# TODO: Hay que ver:
-    # Si es otra operación hay que llamar la función recursivamente en cada pedazo
-    # 1. si es cadena
-    # 2. si es otra operación. Para esto, hay que regresar error o algo así cuando no se encuentre
+
 def crear_operacion(transcript):
     '''
-
     Toma el transcript de una operación binaria y la traduce a código de Python.
     Para traducir las variables que se usan en la operación binaria busca 
     si son cadenas o sólo menciones de variables usando las funciones
@@ -310,6 +311,7 @@ def crear_operacion(transcript):
 
                 
     return f'{cadena_izq} {dict_operaciones[op]} {cadena_der}'
+
 
 
 def crear_llamada(transcript):
@@ -376,9 +378,11 @@ def crear_llamada(transcript):
         # Caso cuando es variable
     
     cadena_final=','.join(lista_cadenas)
-    cadena=f'{funcion_nombre}({cadena_final})<br>'+'&emsp;'*indentacion+'|'
+    cadena=f'{funcion_nombre}({cadena_final})\n'+'\t'*indentacion+'|'
 
     return cadena
+
+
 
 def crear_regresa(transcript):
     antes_reg,reg,desp_reg=encontrar_palabras(transcript,['regresa'])
@@ -409,8 +413,9 @@ def crear_regresa(transcript):
             
         cadena_final+=nombre_var
     global indentacion
-    indentacion-=1    
-    return f'<span style="color: #AA22FF; font-weight: bold">return</span> {cadena_final}<br>'+'&emsp;'*indentacion+'|'
+    indentacion-=1
+    return f'return {cadena_final}\n'+'\t'*indentacion+'|'
+
 
 
 def crear_variable(instruccion):
@@ -458,8 +463,9 @@ def crear_variable(instruccion):
     if diccionario_fonetico.get(name_variable,False):
         name_variable=diccionario_fonetico[name_variable] 
 
-    codigo_generado = f'{name_variable} = {valor}<br>'+ '&emsp;' * indentacion + '|'
+    codigo_generado = f'{name_variable} = {valor}\n'+ '\t' * indentacion + '|'
     return codigo_generado
+
 
 
 def asignar_variable(instruccion):
@@ -484,8 +490,6 @@ def asignar_variable(instruccion):
     >>>'asignar variable india con india',
     
     """ 
-    global bloque
-    bloque = "asignar"
    
     before_keyword, keyword, after_keyword = instruccion.partition('variable')
     after_keyword_list = after_keyword.strip().split(' ')
@@ -505,8 +509,9 @@ def asignar_variable(instruccion):
     if diccionario_fonetico.get(name_variable,False):
         name_variable=diccionario_fonetico[name_variable] 
 
-    codigo_generado = f'{name_variable} = {operacion_str}<br>'+ '&emsp;' * indentacion + '|'
+    codigo_generado = f'{name_variable} = {operacion_str}\n'+ '\t' * indentacion + '|'
     return codigo_generado
+
 
 
 def crear_for(instruccion):
@@ -578,17 +583,19 @@ def crear_for(instruccion):
     indentacion += 1
 
     if len(limites) == 0:
-        return f''
+        return f'', 'No encontré los límites del rango, vuelve a intentarlo'
 
     elif len(limites) == 1:
-        return f'<span style="color: #008000; font-weight: bold">for</span> {iterador} in <span style="color: #0066bb; font-weight: bold">range</span>({limites[-1]}):<br>' + '&emsp;' * indentacion + '|'
+        return f'for {iterador} in range({limites[-1]}):\n' + '\t' * indentacion + '|'
 
     elif len(limites) == 2:
-        return f'<span style="color: #008000; font-weight: bold">for</span> {iterador} in <span style="color: #0066bb; font-weight: bold">range</span>({limites[0]}, {limites[1]}):<br>' + '&emsp;' * indentacion + '|'
+        return f'for {iterador} in range({limites[0]}, {limites[1]}):\n' + '\t' * indentacion + '|'
 
     elif len(limites) >= 2:
         recomendacion = 'Me dictaste más de un número en el rango pero tomé los dos primeros'
-        return f'<span style="color: #008000; font-weight: bold">for</span> {iterador} in <span style="color: #0066bb; font-weight: bold">range</span>({limites[0]}, {limites[1]}):<br>' + '&emsp;' * indentacion + '|'
+        return f'for {iterador} in range({limites[0]}, {limites[1]}):\n' + '\t' * indentacion + '|'
+
+
 
 def crear_comentario(instruccion):
     """
@@ -610,19 +617,25 @@ def crear_comentario(instruccion):
 
     # guarda los avisos o recomendaciones que el programa te hace
     recomendacion = ''
-    bloque = 'comentario'
+
     # guarda la línea de código
     output = ''
 
     before_keyword, keyword, after_keyword = instruccion.partition('comentario')
 
-    return '<span style="color: #888888">' + '# ' + after_keyword + '</span>' + '<br>' + '&emsp;' * indentacion + '|'
+    return '# ' + after_keyword + '\n' + '\t' * indentacion + '|'
+
+
 
 def fin_de_bloque(transcripcion):
-  global indentacion
-  global bloque
-  bloque='fin'
-  indentacion=indentacion-1
-  return '|'
-  
-                      
+    """
+    Función auxiliar que es llamada por otras funciones.
+    """
+
+    global indentacion
+    global bloque
+
+    bloque = 'fin'
+    indentacion = indentacion - 1
+
+    return ''

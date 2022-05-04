@@ -1,21 +1,6 @@
-def sim_jac(s1, s2):
+import numpy as np
 
-    bigrams_s1 = []
-    bigrams_s2 = []
 
-    for i in range(len(s1) - 1):
-        bigrams_s1.append(s1[i:i+2])
-    
-    for i in range(len(s2) - 1):
-        bigrams_s2.append(s2[i:i+2])
-
-    c_common = 0
-
-    for i in bigrams_s1:
-        if bigrams_s2.count(i) > 0:
-            c_common += 1
-
-    return c_common / ((len(s1) - 1) + (len(s2) - 1) - c_common)
 
 def encontrar_palabras(transcript,cjto_palabras):
     '''
@@ -32,15 +17,20 @@ def encontrar_palabras(transcript,cjto_palabras):
     return antes_palabra,palabra,despues_palabra
 
 
+
 def agregar_adentro(codigo, transcipcion):
+
     codigo2 = main(transcipcion)
   
     return codigo[:-1] + codigo2
 
 
-import numpy as np
 
 def main(instruccion):
+    """
+    Función global encargada de recibir las instrucciones y capaz de direccionar
+    a funciones correspondientes mediante medidas de similitud.
+    """
     global bloque
 
     plantillas = [
@@ -72,7 +62,9 @@ def main(instruccion):
     J = []
     for comando in comandos:
         J.append(len(set(instruccion.strip().split(' ')).intersection(comando)) / len(set(instruccion.strip().split(' ')).union(comando)))
+
     # print(J,np.argmax(J))
     pos_func=np.argmax(J)
     # print(pos_func)
+
     return plantillas[pos_func](instruccion)

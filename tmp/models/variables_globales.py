@@ -78,8 +78,7 @@ def lista(text):
     return []
 
 
-
-diccionario_fonetico={'andrea':'a',
+diccionario_fonetico={'alfa':'a',
                     'bravo':'b',
                     'carlos':'c',
                     'delta':'d',
@@ -143,8 +142,8 @@ dict_numeros = {
     
 # Diccionario de funciones
 tipos_datos ={
-    'natural': numero,
+    'numero': numero,
     'flotante': flotante,
     'cadena': cadena,
     'lista': lista,
-}
+}    
