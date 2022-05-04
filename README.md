@@ -1,11 +1,11 @@
 # Caracola Mágica
 
-## Los panchos
+## Equipo: Los panchos
 - Fernando Santa Rita Vizuet ([@FSRV24](https://github.com/FSRV24) )
 - Fernando Avitúa ([@FunkySpiderman](https://github.com/FunkySpiderman) )
 - Guillermo Andrés ([@gandres-dev](https://github.com/gandres-dev) )
 
-![image info](./pictures/image.png)
+![interfaz](./img/image.png)
 
 La **Caracola Mágica** es una aplicación para la escritura de código en Python vía voz desarrollada como proyecto para el *Hackatón sobre tecnologías del habla* donde se emplea un modelo pre-entrenado en español de [Hugging Face](https://huggingface.co/patrickvonplaten/wav2vec2-large-xlsr-53-spanish-with-lm). Dicho modelo permite la transcripción de una entrada de audio en español a texto.
 
@@ -13,17 +13,19 @@ La **Caracola Mágica** es una aplicación para la escritura de código en Pytho
 
 Para hacer uso de la aplicación se tiene que clonar el repositorio y seguir los siguientes pasos:
 
-2. Ejecutar el archivo `app.ipynb` desde Google Colab
+1. Abrir el archivo `/notebooks/app.ipynb` desde Google Colab desde el folder de Notebooks. 
 
-3. Abrir el link que provee el programa para acceder el servidor que creado (válido por 72 horas).
+2. Cambiar la ruta de Google Drive a la ruta del usuario que lo ejecuta.
 
-4. Dicta alguno de los comandos básicos disponibles para Python.
+3. Ejecutar el archivo. (Nota: hay que correr toda la libreta, después reiniciar el kernel y correr todo de nuevo).
+
+4. Abrir el link que provee el programa para acceder el servidor que creado (válido por 72 horas).
+
+5. Dicta alguno de los comandos básicos disponibles para Python o selecciona algunos de los ejemlos propuestos.
 
 ## Algunos ejemplos de uso
 
-Seguidos los pasos de la guía de inicio, aparecerá la siguiente interfaz:
-
-![image info](./pictures/image.png)
+Seguidos los pasos de la guía de inicio, aparecerá la interfaz mostrada anteriormente.
 
 En la parte superior izquierda se encuentra el botón *Dar click para grabar tu voz*, que permite al usuario grabar una línea de código a la vez. Al terminar de grabar la línea de código, el usuario debe detener la grabación y presionar el botón *submit* la Caracola Mágica hará la interpretación.
 
