@@ -35,57 +35,35 @@ En la parte inferior de la página se encuentran las instrucciones para programa
 
 Para el uso de variables que incluyan una letra se encuentran problemas con el modelo, pues no reconoce correctamente estas en las mayoría de los casos. A continuación se lista el diccionario fonético implementado:
 
-- andrea -> a
 
-- bravo -> b
-
-- carlos -> c
-
-- delta -> d
-
-- eduardo -> e
-                    
-- fernando -> f
-                    
-- garcia -> g
-                    
-- hotel -> h
-                    
-- india -> i
-                    
-- julieta -> j
-                    
-- kilo -> k
-                    
-- lima -> l
-                    
-- miguel -> m
-                    
-- noviembre -> n
-                    
-- oscar -> o
-                    
-- papa -> p
-                    
-- queretaro -> q
-                    
-- romero -> r
-                    
-- sierra -> s
-                    
-- tango -> t
-                    
-- uniforme -> u
-                    
-- victor -> v
-                    
-- wafle -> w
-                    
-- equis -> x
-                    
-- yarda -> y
-                    
-- llarda -> y  
+|Frase| Letra|
+|---|---|
+|andrea | a|
+|bravo | b|
+|carlos | c|
+|delta | d|
+|eduardo | e|                  
+|fernando | f|                  
+|garcia | g|                  
+|hotel | h|                  
+|india | i|                  
+|julieta | j|                  
+|kilo | k|                  
+|lima | l|                  
+|miguel | m|                  
+|noviembre | n|                  
+|oscar | o|                  
+|papa | p|                  
+|queretaro | q|                  
+|romero | r|                  
+|sierra | s|                  
+|tango | t|                  
+|uniforme | u|                  
+|victor | v|                  
+|wafle | w|                  
+|equis | x|                  
+|yarda | y|                  
+|llarda | y|
 
 ---
 App despliegue: https://huggingface.co/spaces/dev-andres/Caracola-app 
